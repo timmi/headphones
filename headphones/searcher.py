@@ -243,25 +243,25 @@ def searchNZB(albumid=None, new=False, losslessOnly=False):
         if headphones.NZBSORG:
             provider = "nzbsorg"
             if headphones.PREFERRED_QUALITY == 3 or losslessOnly:
-                categories = "31"
+                categories = "3040"
                 maxsize = 10000000000
             elif headphones.PREFERRED_QUALITY:
-                categories = "5"
+                categories = "3010"
                 maxsize = 2000000000
             else:
-                categories = "5"
+                categories = "3010"
                 maxsize = 300000000        
 
             params = {    "action": "search",
                         "dl": 1,
-                        "catid": categories,
+                        "t": categories,
                         "i": headphones.NZBSORG_UID,
-                        "h": headphones.NZBSORG_HASH,
+                        "r": headphones.NZBSORG_HASH,
                         "age": headphones.USENET_RETENTION,
                         "q": term
                         }
         
-            searchURL = 'https://secure.nzbs.org/rss.php?' + urllib.urlencode(params)
+            searchURL = 'http://beta.nzbs.org/rss.php?' + urllib.urlencode(params)
             logger.info(u'Parsing results from <a href="%s">%s</a>' % (searchURL, provider))
             
             try:
